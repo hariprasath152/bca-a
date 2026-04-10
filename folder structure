@@ -1,0 +1,102 @@
+src/
+└── com/
+ └── scsvmv/
+ └── javalab/
+ ├── Hello.java
+ ├── TestHello.java
+ └── hello/
+ └── Hello.java
+Files:
+● com/scsvmv/javalab/Hello.java
+→ Simple Hello class (always prints Hello World)
+● com/scsvmv/javalab/TestHello.java
+→ Main class with command-line arguments
+● com/scsvmv/javalab/hello/Hello.java
+→ Overloaded wish() methods and Date usage
+Steps to Compile the Program
+1. Open Command Prompt / Terminal
+2. Navigate to the src folder using cd command
+Note: Always compile from the src folder, not inside package folders.
+3. Compile all Java files
+…..src>javac com/scsvmv/javalab/hello/Hello.java
+…..src>javac com/scsvmv/javalab/Hello.java
+…..src>javac com/scsvmv/javalab/TestHello.java
+✔ .class files will be generated in the same package folders.
+Steps to Run the Program
+Run with command-line argument:
+java com.scsvmv.javalab.TestHello Seetharaman
+If no argument is passed:
+java com.scsvmv.javalab.TestHello
+Sample Output (with argument)
+Hello World
+Hello Seetharaman
+Hello Seetharaman | Date: Thu Feb 05 10:30:15 IST 2026
+Output (without argument)
+Hello World
+Usage:
+java com.scsvmv.javalab.TestHello <name>
+Example:
+java com.scsvmv.javalab.TestHello Seetharaman
+TestHello.java
+package com.scsvmv.javalab;
+import com.scsvmv.javalab.hello.Hello;
+/*
+* TestHello class
+* Demonstrates passing command-line arguments
+*/
+public class TestHello {
+ public static void main(String[] args) {
+ // Using Hello class from parent package
+ Hello simpleHello = new Hello();
+ simpleHello.wish();
+ // Using Hello class from child package
+ com.scsvmv.javalab.hello.Hello h =
+ new com.scsvmv.javalab.hello.Hello();
+ // Check for command-line argument
+ if (args.length > 0) {
+ h.wish(args[0]); // pass CLI argument
+ h.wishWithDate(args[0]);
+ } else {
+ System.out.println("Usage:");
+ System.out.println("java com.scsvmv.javalab.TestHello <name>");
+ System.out.println("Example:");
+ System.out.println("java com.scsvmv.javalab.TestHello Student");
+ }
+ }
+}
+Hello.java (com.scsvmv.javalab)
+package com.scsvmv.javalab;
+/*
+* Simple Hello class
+* Always wishes Hello World
+*/
+public class Hello {
+ public void wish() {
+ System.out.println("Hello World");
+ }
+}
+Hello.java (com.scsvmv.javalab.hello)
+package com.scsvmv.javalab.hello;
+import java.util.Date;
+/*
+* Hello class
+* Demonstrates method overloading and command-line arguments
+*/
+public class Hello {
+ // Default constructor
+ public Hello() {
+ }
+ // Generic wish
+ public void wish() {
+ System.out.println("Hello World");
+ }
+ // Overloaded wish method with name parameter
+ public void wish(String name) {
+ System.out.println("Hello " + name);
+ }
+ // Wish with name and today's date
+ public void wishWithDate(String name) {
+ Date today = new Date();
+ System.out.println("Hello " + name + " | Date: " + today);
+ }
+}
